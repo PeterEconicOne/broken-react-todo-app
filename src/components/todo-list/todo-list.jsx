@@ -7,11 +7,20 @@ export const TodoList = () => {
   const { todos, setTodos } = React.useContext(TodosContext);
 
   const handleDelete = (id) => {
-    // Fix an ability to delete task
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const toggleCheck = (id) => {
-    // Fix an ability to toggle task
+    setTodos(todos.map((todo) => {
+      let { checked } = todo;
+      if (todo.id === id) {
+        checked = !todo.checked;
+      }
+      return {
+        ...todo,
+        checked,
+      };
+    }));
   };
 
   const handleKeyUp = (e, id) => {
