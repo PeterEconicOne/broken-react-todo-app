@@ -9,17 +9,17 @@ const todosTemplate = [
   {
     id: 0,
     label: 'Fix an ability to display all tasks',
-    checked: false,
+    checked: true,
   },
   {
     id: 1,
     label: 'Fix a layout, checkboxes should be listed in a column',
-    checked: false,
+    checked: true,
   },
   {
     id: 2,
     label: 'Fix an ability to add a new task',
-    checked: false,
+    checked: true,
   },
   {
     id: 3,
@@ -39,11 +39,11 @@ const todosTemplate = [
 ];
 
 export const App = () => {
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = React.useState(todosTemplate);
 
   return (
     <div className="root">
-      <TodosContext.Provider value={{ todos }}>
+      <TodosContext.Provider value={{ todos, setTodos }}>
         <TodoList />
         <TodoResults />
         <TodoForm />
