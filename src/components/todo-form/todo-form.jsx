@@ -21,7 +21,9 @@ export const TodoForm = () => {
   };
 
   const handleKeyUp = (e) => {
-    setError('');
+    if (error) {
+      setError('');
+    }
     if (e.keyCode === 13) {
       handleAddTodo();
     }
