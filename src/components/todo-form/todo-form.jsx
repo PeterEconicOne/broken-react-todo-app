@@ -5,12 +5,25 @@ import './todo-form.scss';
 export const TodoForm = () => {
   const { todos, setTodos } = React.useContext(TodosContext);
   const [task, setTask] = React.useState('');
+  const [error, setError] = React.useState('');
 
   const handleAddTodo = () => {
-    // Fin an ability to add new task
+    if (!task) {
+      setError('Enter the name');
+    } else {
+      setTodos(todos.concat([{
+        id: todos.length ? todos[todos.length - 1].id + 1 : 0,
+        label: task,
+        checked: false,
+      }]));
+      setTask('');
+    }
   };
 
   const handleKeyUp = (e) => {
+    if (error) {
+      setError('');
+    }
     if (e.keyCode === 13) {
       handleAddTodo();
     }
@@ -19,6 +32,7 @@ export const TodoForm = () => {
   return (
     <div className="todo-form">
       <input
+        className={error ? 'error' : ''}
         placeholder="Enter new task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
