@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { TodoForm } from './components/todo-form';
 import { TodoList } from './components/todo-list';
 import { TodoResults } from './components/todo-results';
@@ -39,11 +39,12 @@ const todosTemplate = [
 ];
 
 export const App = () => {
-  const [todos, setTodos] = React.useState([]);
+  // Context is empty right now so I will use the todoTemplate
+  const [todos, setTodos] = useState(todosTemplate);
 
   return (
     <div className="root">
-      <TodosContext.Provider value={{ todos }}>
+      <TodosContext.Provider value={{ todos, setTodos }}>
         <TodoList />
         <TodoResults />
         <TodoForm />
